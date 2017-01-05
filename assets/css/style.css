@@ -1,0 +1,43 @@
+body {
+     margin: 0;
+     background: url("../images/blacklodge.jpg");
+     background-repeat: no-repeat;
+     background-size: cover;
+}
+
+h1, #timer {
+    font-family: 'Roboto Condensed',sans-serif;
+    font-size: 75px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    transform: uppercase;
+    text-shadow: 1px 1px 0 #2be70e, -1px -1px 0 #2be70e, 1px -1px 0 #2be70e, -1px 1px 0 #2be70e, 0px 1px 0 #2be70e, 1px 0px 0 #2be70e, 0px -1px 0 #2be70e, -1px 0px 0 #2be70e, 3px 3px 2px #000000;    text-shadow: 1px 1px 0 #2be70e, -1px -1px 0 #2be70e, 1px -1px 0 #2be70e, -1px 1px 0 #2be70e, 0px 1px 0 #2be70e, 1px 0px 0 #2be70e, 0px -1px 0 #2be70e, -1px 0px 0 #2be70e, 3px 3px 2px #000000;
+}
+
+img {
+	width: 50%;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #5e3a38;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Contrail+One', sans-serif;
+}
+
+p, span, input {
+	color: white;
+	font-weight: bold;
+    font-size: 18px;
+    font-family: 'Cambay', sans-serif;
+    display: inline-block;
+}
+
+.well {
+   background-color: rgba(245, 245, 245, 0.4);
+}
+
+.panel-transparent .panel-heading .panel-body {
+    background-color: rgba(245, 245, 245, 0.4)
+}

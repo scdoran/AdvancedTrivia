@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twin Peaks Trivia</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Cambay:400i|Contrail+One" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+<body>
+	<div class="container text-center">
+		<div>
+			<h1 class="text-center">TWIN PEAKS TRIVIA
+			</h1>
+		</div>
+<!-- Here is where the trivia questions will go. -->
+		<div class="row panel default well">
+<!-- Here is the start page. -->
+			<span id="startGame">
+				<img src="http://i.giphy.com/26BRF6v9duKz62OME.gif" alt="What Dale Cooper Thinks About Twin Peaks Trivia">
+				<br>
+				<button id="start" type="button" class="btn btn-default">Start</button>
+			</span>
+
+<!-- This is where the trivia questions will go. -->
+			<span id="trivia">
+			<div class="container">
+
+			<!-- Here is the span for the timer. -->
+				<div>
+					<span id="timer">30</span>
+				</div>
+
+				<form name="trivia">
+					<span id="q1">
+					<p>1. Who is the creator of the Twin Peaks series?</p><br>
+					<input type="radio" name="q1" value="wrong"> Martin Scorsese<br>
+					<input type="radio" name="q1" value="correct"> David Lynch<br>
+					<input type="radio" name="q1" value="wrong"> Ed Wood<br>
+					<input type="radio" name="q1" value="wrong"> John Carpenter<br>
+					</span><br>
+					
+					<span id="q2">
+					<p>2. What is Agent Cooper's first name?</p><br>
+					<input type="radio" name="q2" value="wrong"> Jim<br>
+					<input type="radio" name="q2" value="wrong"> Dave<br>
+					<input type="radio" name="q2" value="correct"> Dale<br>
+					<input type="radio" name="q2" value="wrong"> Benjamin<br>
+					</span><br>
+
+ 					<span id="q3">
+					<p>3. Who is Laura Palmer's secret boyfriend?</p><br>
+					<input type="radio" name="q3" value="wrong"> Bobby Briggs<br>
+					<input type="radio" name="q3" value="wrong"> Leo Johnson<br>
+					<input type="radio" name="q3" value="wrong"> Ben Horne<br>
+					<input type="radio" name="q3" value="correct"> James Hurley<br>
+					</span><br>
+
+					<span id="q4">
+					<p>4. Who is Laura Palmer's best friend?</p><br>
+					<input type="radio" name="q4" value="wrong"> Shelly Johnson<br>
+					<input type="radio" name="q4" value="wrong"> Audrey Horne<br>
+					<input type="radio" name="q4" value="correct"> Donna Hayward<br>
+					<input type="radio" name="q4" value="wrong"> Josie Packard<br>
+					</span><br>
+
+					<span id="q5">
+					<p>5. What is the name of the mysterious place Agent Cooper visits and sees in his dreams?</p><br>
+					<input type="radio" name="q5" value="correct"> Black Lodge<br>
+					<input type="radio" name="q5" value="wrong"> White Lodge<br>
+					<input type="radio" name="q5" value="wrong"> Red Lodge<br>
+					<input type="radio" name="q5" value="wrong"> Hex Lodge<br>
+					</span><br>
+
+					<span id="q6">
+					<p>6. What is the name of the hotel owned by Ben Horne?</p><br>
+					<input type="radio" name="q6" value="wrong"> Salish Lodge and Spa<br>
+					<input type="radio" name="q6" value="correct"> Great Northern Hotel<br>
+					<input type="radio" name="q6" value="wrong"> Great Wolf Lodge<br>
+					<input type="radio" name="q6" value="wrong"> Kiana Lodge<br>
+					</span><br>
+					
+					<span id="q7">
+					<p>7. Who found Laura Palmer's body?</p><br>
+					<input type="radio" name="q7" value="wrong"> Josie Packard<br>
+					<input type="radio" name="q7" value="wrong"> Sheriff Truman<br>
+					<input type="radio" name="q7" value="correct"> Pete Packard<br>
+					<input type="radio" name="q7" value="wrong"> Donna Hayward<br>
+					</span><br>
+
+					<span id="q8">
+					<p>8. What is the name Agent Cooper uses when he speaks into his tape recorder?</p><br>
+					<input type="radio" name="q8" value="wrong"> Jane<br>
+					<input type="radio" name="q8" value="correct"> Diane<br>
+					<input type="radio" name="q8" value="wrong"> Lucy<br>
+					<input type="radio" name="q8" value="wrong"> Sophia<br>
+					</span><br>
+
+				</form>
+					
+				<!-- <button id="submit" type="submit" class="btn btn-default">Submit</button> -->
+
+				</div>
+			</span>
+			
+			<span id="results">
+				<div class="container text-center">
+					<div>
+						<span id="timeUp"></span>
+						<span id="userEnd"></span>
+					</div>
+				<!-- Here is where the trivia questions will go. -->
+					<div>
+				<!-- This is where the image placeholder will be when the trivia game is finished. -->
+						<div>
+							<span id="picture" class="img-responsive"></span>
+						</div>
+				<!-- This is where the trivia results will go. -->
+						<div>
+							<p>Correct: <span id="correct">0</span></p>
+							<br>
+							<p>Incorrect: <span id="wrong">0</span></p>
+							<br>
+							<p>Blank: <span id="blank">0</span></p>
+						</div>
+						
+						<!-- This will only appear when the game is over. -->
+						<span id="end">		
+							<button id="restart" type="button" class="btn btn-default">Try Again</button>
+						</span>
+						
+					</div>
+			</span>
+
+			
+		</div>	
+<!-- Here is the end of the trivia stuff. -->
+	</div>
+	<script src="assets/javascript/app.js"></script></head>
+</body>
+</html>
