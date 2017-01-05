@@ -24,6 +24,21 @@ var game = {
 	    interval = setInterval(game.counter, 1000);
 	    console.log('Time started.')
 	},
+
+// This function is setting the timer and making the timer count backwards from 30.
+	counter: function() {
+		game.time--;
+		var timeLeft = parseInt(game.time);
+
+	// If the game timer reaches 0, the trivia content will hide and the results page will appear.
+		if (timeLeft === 0) {
+			game.stop();
+			game.blank++;
+			$("#timeUp").append("<h1> Time's Up! <h1>");
+		}
+	// This displays the amount of time left on the page.  
+	$("#timer").html(timeLeft);
+	},
  	
 // This function makes the trivia content hide and the results content show.
  	stop: function() {
@@ -37,10 +52,10 @@ var game = {
 
 		$("#trivia").hide();
 		$("#results").show();
-		game.questionsLeft--;
-		setTimeout(game.newQuestion, 2000);
 
-		if (game.questions === 0) {
+		if (game.questionsLeft > 0) {
+			setTimeout(game.newQuestion, 2000);
+		} else if (game.questionsLeft === 0) {
 			game.end();
 		}
 	},
@@ -66,37 +81,24 @@ var game = {
 		}
 	},
 
-// This function is setting the timer and making the timer count backwards from 30.
-	counter: function() {
-	game.time--;
-	var timeLeft = parseInt(game.time);
-
-	// If the game timer reaches 0, the trivia content will hide and the results page will appear.
-		if (timeLeft === 0) {
-			game.stop();
-			game.blank++;
-			$("#timeUp").append("<h1> Time's Up! <h1>");
-		}
-	// This displays the amount of time left on the page.  
-	$("#timer").html(timeLeft);
-	},
-
 // This function will determine if the answers selected are correct or incorrect.	
 	userAnswer: function() {
 
 		$('input[type="radio"]:checked').each(function() {
 
-			game.questionsLeft--;
-
 		    if (this.value === "correct") {
 				game.correct++;
 				$("#correct").text(game.correct);
 				$("#userEnd").append("<h1> That's Right! <h1>");
+				game.questionsLeft--;
+				console.log(game.questionsLeft);
 				game.stop();
 		    } else if (this.value === "wrong") {
 		   		game.wrong++;
 				$("#wrong").text(game.wrong);
 				$("#userEnd").append("<h1> Wrong! <h1>");
+				game.questionsLeft--;
+				console.log(game.questionsLeft);
 				game.stop();
 			}
 		});
@@ -107,7 +109,6 @@ var game = {
 	newQuestion: function() {
 
 		console.log("New Question.")
-
 
 		game.start();
 
@@ -124,6 +125,9 @@ var game = {
 
 		// This will empty the 'Time's Up!' content that was revealed when the game ended due to time constraints..
 		$("#timeUp").empty();
+
+		$('input[type=radio]').attr("checked", false);
+
 
 		// $("#trivia").each(game.questions, function() {
 			
@@ -167,6 +171,7 @@ var game = {
 		$("#trivia").hide();
 		// Hides the results content.
 		$("#results").hide();
+		$("#end").hide();
 		// Shows the starting page so the user can restart the game.
 		$("#startGame").show();
 
@@ -183,6 +188,7 @@ var game = {
 		game.correct = 0;
 		game.wrong = 0;
 		game.blank = 0;
+		game.questionsLeft = 8;
 
 		// Sets the game timer to 30 seconds.
 		game.time = 30;
