@@ -4,6 +4,42 @@ $(document).ready(function() {
 // This is the variable set for the timer interval.
 var interval;
 
+// Questions for the trivia game.
+var questions = [{
+		question: "Who is the creator of the Twin Peaks series?",
+		choices: ["Martin Scorsese", "David Lynch", "Ed Wood", "John Carpenter"],
+		answer: 2,
+	}, { 
+		question: "What is Agent Cooper's first name?",
+		choices: ["Jim", "Dave", "Dale", "Benjamin"],
+		answer: 3
+	}, { 
+		question: "Who is Laura Palmer's secret boyfriend?",
+		choices: ["Bobby Briggs", "Leo Johnson", "Ben Horne", "James Hurley"],
+		answer: 4
+	}, { 
+		question: "Who is Laura Palmer's best friend?",
+		choices: ["Shelly Johnson", "Audrey Horne", "Donna Hayward", "Josie Packard"],
+		answer: 3
+	}, { 
+		question: "What is the name of the mysterious place Agent Cooper visits in his dreams?",
+		choices: ["Black Lodge", "White Lodge", "Red Lodge", "Hex Lodge"],
+		answer: 1
+	}, { 
+		question: "What is the name of the hotel owned by Ben Horne?",
+		choices: ["Salish Lodge", "Great Northern Hotel", "Great Wolf Lodge", "Kiana Lodge"],
+		answer: 2
+	}, { 
+		question: "Who found Laura Palmer's body?",
+		choices: ["Josie Packard", "Sheriff Truman", "Pete Packard", "Donna Hayward"],
+		answer: 3
+	}, { 
+		question: "What is the name Agent Cooper uses when he speaks into his tape recorder?",
+		choices: ["Jane", "Diane", "Lucy", "Sophia"],
+		answer: 2
+	},
+]
+
 // Variables for the game have been set in this object. 
 // Timer, correct, blank & wrong answers, answer values,
 // and the boolean variables set to determine when content on the page shows up. 
@@ -12,11 +48,10 @@ var game = {
 	time: 30,
 	correct: 0,
 	wrong: 0,
-	blank: 0,
-	gifUrl: '',
+	unanswered: [],
+	// gifUrl: '',
 	questionsLeft: 8,
-	questions: [$("#q1"), $("#q2"), $("#q3"), $("#q4"), $("#q5"), $("#q6"), $("#q7"), $("#q8")],
-
+	qCounter: 0,
 
 // This function starts the timer for the game.
 	start: function() {
@@ -34,8 +69,6 @@ var game = {
 	// If the game timer reaches 0, the trivia content will hide and the results page will appear.
 		if (timeLeft === 0) {
 			game.stop();
-			game.blank++;
-			$("#blank").text(game.blank);
 			game.questionsLeft--;
 			$("#timeUp").append("<h1> Time's Up! <h1>");
 		}
@@ -48,10 +81,11 @@ var game = {
 
 	//Stops the timer. 
 	    clearInterval(interval);
-	    console.log('Time stopped.')
 
 	   // Sets the game timer to 30 seconds.
 		game.time = 30;
+
+		game.emptyQuestions();
 
 		$("#trivia").hide();
 		$("#results").show();
@@ -84,20 +118,46 @@ var game = {
 		}
 	},
 
+	display: function(index){
+
+		var question = $("<p id='question'>");
+		question.text(questions[index].question);
+		$(".question").append(question);
+
+		var choice1 = $("<p id='a1'>");
+		choice1.text(questions[index].choices[0]);
+		$("#choice1").append(choice1);
+
+		var choice2 = $("<p id='a2'>");
+		choice2.text(questions[index].choices[1]);
+		$("#choice2").append(choice2);
+
+		var choice3 = $("<p id='a3'>");
+		choice3.text(questions[index].choices[2]);
+		$("#choice3").append(choice3);
+
+		var choice4 = $("<p id='a4'>");
+		choice4.text(questions[index].choices[3]);
+		$("#choice4").append(choice4);
+
+	},
+
 // This function will determine if the answers selected are correct or incorrect.	
 	userAnswer: function() {
 
 		$('input[type="radio"]:checked').each(function() {
 
-		    if (this.value === "correct") {
+		    if (this.value == questions[game.qCounter].answer) {
 				game.correct++;
+				game.qCounter++;
 				$("#correct").text(game.correct);
 				$("#userEnd").append("<h1> That's Right! <h1>");
 				game.questionsLeft--;
 				// game.newPicture();
 				game.stop();
-		    } else if (this.value === "wrong") {
+		    } else {
 		   		game.wrong++;
+		   		game.qCounter++;
 				$("#wrong").text(game.wrong);
 				$("#userEnd").append("<h1> Wrong! <h1>");
 				game.questionsLeft--;
@@ -113,6 +173,8 @@ var game = {
 		console.log("New Question.")
 
 		game.start();
+
+		game.display(game.qCounter);
 
 		$("#trivia").show();
 		
@@ -130,10 +192,15 @@ var game = {
 
 		$('input[type=radio]').attr("checked", false);
 
-		// $("#trivia").each(game.questions, function() {
-				
-		// });
 	}, 
+
+	emptyQuestions: function() {
+		$("#question").remove();
+		$("#a1").remove();
+		$("#a2").remove();
+		$("#a3").remove();
+		$("#a4").remove();
+	}
 
 	// newPicture: function() {
 	// 	// Random Giffy function...
@@ -178,7 +245,7 @@ var game = {
 		$("#trivia").show();
 
 		game.start();
-		// game.newQuestion();
+		game.display(game.qCounter);
 		
 	});
 	
@@ -213,6 +280,7 @@ var game = {
 		game.wrong = 0;
 		game.blank = 0;
 		game.questionsLeft = 8;
+		game.qCounter = 0;
 
 		// Sets the game timer to 30 seconds.
 		game.time = 30;
@@ -222,7 +290,6 @@ var game = {
 		$("#wrong").text(game.wrong);
 
 		$("#blank").text(game.blank);
-
 
 		// Resets the game values from the form back to being unselected.
 		$('input[type=radio]').attr("checked", false);
