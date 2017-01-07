@@ -13,6 +13,7 @@ var game = {
 	correct: 0,
 	wrong: 0,
 	blank: 0,
+	gifUrl: '',
 	questionsLeft: 8,
 	questions: [$("#q1"), $("#q2"), $("#q3"), $("#q4"), $("#q5"), $("#q6"), $("#q7"), $("#q8")],
 
@@ -34,6 +35,8 @@ var game = {
 		if (timeLeft === 0) {
 			game.stop();
 			game.blank++;
+			$("#blank").text(game.blank);
+			game.questionsLeft--;
 			$("#timeUp").append("<h1> Time's Up! <h1>");
 		}
 	// This displays the amount of time left on the page.  
@@ -91,18 +94,17 @@ var game = {
 				$("#correct").text(game.correct);
 				$("#userEnd").append("<h1> That's Right! <h1>");
 				game.questionsLeft--;
-				console.log(game.questionsLeft);
+				// game.newPicture();
 				game.stop();
 		    } else if (this.value === "wrong") {
 		   		game.wrong++;
 				$("#wrong").text(game.wrong);
 				$("#userEnd").append("<h1> Wrong! <h1>");
 				game.questionsLeft--;
-				console.log(game.questionsLeft);
+				// game.newPicture();
 				game.stop();
 			}
 		});
-
 	},
 
 	// This function will pull up a new question after the results from the previous question pop up.
@@ -128,12 +130,34 @@ var game = {
 
 		$('input[type=radio]').attr("checked", false);
 
-
 		// $("#trivia").each(game.questions, function() {
-			
-			
+				
 		// });
-	}
+	}, 
+
+	// newPicture: function() {
+	// 	// Random Giffy function...
+	//     $.ajax({
+	// 	      url: "http://api.giphy.com/v1/gifs/random?",
+	// 	      method: 'GET',
+	// 	      data: {
+	// 	      	api_key: 'dc6zaTOxFJmzC',
+	// 	      	tag: $()
+	// 	      }
+	//     }).done(function(response) {
+	//     	var img = response['data']['image_url'];
+	//     	var imgArray = img.split('//');
+	//     	imgArray[0] = 'https:';
+	//     	img = imgArray.join('//');
+
+	//       var newGif = $("<img>");
+	//       newGif.attr("src", img);
+	//       newGif.attr("alt", "Twin Peaks GIF")
+
+	//       $("#picture").text(newGif);
+    
+ //    	});
+	// }
 }
 
 // Here's the beginning of the trivia logic.

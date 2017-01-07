@@ -32,7 +32,7 @@
 
 				<form name="trivia">
 					<span id="q1">
-					<p>1. Who is the creator of the Twin Peaks series?</p><br>
+					<p>Who is the creator of the Twin Peaks series?</p><br>
 					<input type="radio" name="q1" value="wrong"> Martin Scorsese<br>
 					<input type="radio" name="q1" value="correct"> David Lynch<br>
 					<input type="radio" name="q1" value="wrong"> Ed Wood<br>
@@ -40,7 +40,7 @@
 					</span><br>
 					
 					<span id="q2">
-					<p>2. What is Agent Cooper's first name?</p><br>
+					<p>What is Agent Cooper's first name?</p><br>
 					<input type="radio" name="q2" value="wrong"> Jim<br>
 					<input type="radio" name="q2" value="wrong"> Dave<br>
 					<input type="radio" name="q2" value="correct"> Dale<br>
@@ -48,7 +48,7 @@
 					</span><br>
 
  					<span id="q3">
-					<p>3. Who is Laura Palmer's secret boyfriend?</p><br>
+					<p>Who is Laura Palmer's secret boyfriend?</p><br>
 					<input type="radio" name="q3" value="wrong"> Bobby Briggs<br>
 					<input type="radio" name="q3" value="wrong"> Leo Johnson<br>
 					<input type="radio" name="q3" value="wrong"> Ben Horne<br>
@@ -56,7 +56,7 @@
 					</span><br>
 
 					<span id="q4">
-					<p>4. Who is Laura Palmer's best friend?</p><br>
+					<p>Who is Laura Palmer's best friend?</p><br>
 					<input type="radio" name="q4" value="wrong"> Shelly Johnson<br>
 					<input type="radio" name="q4" value="wrong"> Audrey Horne<br>
 					<input type="radio" name="q4" value="correct"> Donna Hayward<br>
@@ -64,7 +64,7 @@
 					</span><br>
 
 					<span id="q5">
-					<p>5. What is the name of the mysterious place Agent Cooper visits and sees in his dreams?</p><br>
+					<p>What is the name of the mysterious place Agent Cooper visits and sees in his dreams?</p><br>
 					<input type="radio" name="q5" value="correct"> Black Lodge<br>
 					<input type="radio" name="q5" value="wrong"> White Lodge<br>
 					<input type="radio" name="q5" value="wrong"> Red Lodge<br>
@@ -72,7 +72,7 @@
 					</span><br>
 
 					<span id="q6">
-					<p>6. What is the name of the hotel owned by Ben Horne?</p><br>
+					<p>What is the name of the hotel owned by Ben Horne?</p><br>
 					<input type="radio" name="q6" value="wrong"> Salish Lodge and Spa<br>
 					<input type="radio" name="q6" value="correct"> Great Northern Hotel<br>
 					<input type="radio" name="q6" value="wrong"> Great Wolf Lodge<br>
@@ -80,7 +80,7 @@
 					</span><br>
 					
 					<span id="q7">
-					<p>7. Who found Laura Palmer's body?</p><br>
+					<p>Who found Laura Palmer's body?</p><br>
 					<input type="radio" name="q7" value="wrong"> Josie Packard<br>
 					<input type="radio" name="q7" value="wrong"> Sheriff Truman<br>
 					<input type="radio" name="q7" value="correct"> Pete Packard<br>
@@ -88,7 +88,7 @@
 					</span><br>
 
 					<span id="q8">
-					<p>8. What is the name Agent Cooper uses when he speaks into his tape recorder?</p><br>
+					<p>What is the name Agent Cooper uses when he speaks into his tape recorder?</p><br>
 					<input type="radio" name="q8" value="wrong"> Jane<br>
 					<input type="radio" name="q8" value="correct"> Diane<br>
 					<input type="radio" name="q8" value="wrong"> Lucy<br>
@@ -108,12 +108,14 @@
 						<span id="timeUp"></span>
 						<span id="userEnd"></span>
 					</div>
-				<!-- Here is where the trivia questions will go. -->
+				<!-- This is where the image placeholder will be when the trivia questions are answered. -->
 					<div>
-				<!-- This is where the image placeholder will be when the trivia game is finished. -->
-						<div>
-							<span id="picture" class="img-responsive"></span>
-						</div>
+						<span id="picture" class="img-responsive"></span>
+					</div>
+
+					<div>
+					<!-- This will only appear when the game is over. -->
+						<span id="end">
 				<!-- This is where the trivia results will go. -->
 						<div>
 							<p>Correct: <span id="correct">0</span></p>
@@ -121,17 +123,12 @@
 							<p>Incorrect: <span id="wrong">0</span></p>
 							<br>
 							<p>Blank: <span id="blank">0</span></p>
-						</div>
-						
-						<!-- This will only appear when the game is over. -->
-						<span id="end">		
+						</div>		
 							<button id="restart" type="button" class="btn btn-default">Try Again</button>
 						</span>
-						
 					</div>
+				</div>
 			</span>
-
-			
 		</div>	
 <!-- Here is the end of the trivia stuff. -->
 	</div>
