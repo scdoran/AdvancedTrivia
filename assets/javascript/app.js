@@ -9,34 +9,42 @@ var questions = [{
 		question: "Who is the creator of the Twin Peaks series?",
 		choices: ["Martin Scorsese", "David Lynch", "Ed Wood", "John Carpenter"],
 		answer: 2,
+		gif: 'assets/images/david.gif',
 	}, { 
 		question: "What is Agent Cooper's first name?",
 		choices: ["Jim", "Dave", "Dale", "Benjamin"],
-		answer: 3
+		answer: 3,
+		gif: 'assets/images/dale.gif',
 	}, { 
 		question: "Who is Laura Palmer's secret boyfriend?",
 		choices: ["Bobby Briggs", "Leo Johnson", "Ben Horne", "James Hurley"],
-		answer: 4
+		answer: 4,
+		gif: 'assets/images/james.gif',
 	}, { 
 		question: "Who is Laura Palmer's best friend?",
 		choices: ["Shelly Johnson", "Audrey Horne", "Donna Hayward", "Josie Packard"],
-		answer: 3
+		answer: 3,
+		gif: 'assets/images/donna.gif',
 	}, { 
 		question: "What is the name of the mysterious place Agent Cooper visits in his dreams?",
 		choices: ["Black Lodge", "White Lodge", "Red Lodge", "Hex Lodge"],
-		answer: 1
+		answer: 1,
+		gif: 'assets/images/blodge.gif',
 	}, { 
 		question: "What is the name of the hotel owned by Ben Horne?",
 		choices: ["Salish Lodge", "Great Northern Hotel", "Great Wolf Lodge", "Kiana Lodge"],
-		answer: 2
+		answer: 2,
+		gif: 'assets/images/ben.gif',
 	}, { 
 		question: "Who found Laura Palmer's body?",
 		choices: ["Josie Packard", "Sheriff Truman", "Pete Packard", "Donna Hayward"],
-		answer: 3
+		answer: 3,
+		gif: 'assets/images/pete.gif',
 	}, { 
 		question: "What is the name Agent Cooper uses when he speaks into his tape recorder?",
 		choices: ["Jane", "Diane", "Lucy", "Sophia"],
-		answer: 2
+		answer: 2,
+		gif: 'assets/images/dianecooper.gif',
 	},
 ]
 
@@ -48,8 +56,7 @@ var game = {
 	time: 30,
 	correct: 0,
 	wrong: 0,
-	unanswered: [],
-	// gifUrl: '',
+	blank: 0,
 	questionsLeft: 8,
 	qCounter: 0,
 
@@ -58,7 +65,6 @@ var game = {
     
 	    //  Use interval to start the count.
 	    interval = setInterval(game.counter, 1000);
-	    console.log('Time started.')
 	},
 
 // This function is setting the timer and making the timer count backwards from 30.
@@ -70,6 +76,10 @@ var game = {
 		if (timeLeft === 0) {
 			game.stop();
 			game.questionsLeft--;
+			game.gifDisplay(game.qCounter);
+			game.qCounter++;
+			game.blank++;
+			$("#blank").text(game.blank);
 			$("#timeUp").append("<h1> Time's Up! <h1>");
 		}
 	// This displays the amount of time left on the page.  
@@ -90,9 +100,9 @@ var game = {
 		$("#trivia").hide();
 		$("#results").show();
 
-		if (game.questionsLeft > 0) {
+		if (game.questionsLeft > 0){
 			setTimeout(game.newQuestion, 2000);
-		} else if (game.questionsLeft === 0) {
+		} else if (game.questionsLeft === questions.length) {
 			game.end();
 		}
 	},
@@ -142,6 +152,12 @@ var game = {
 
 	},
 
+	gifDisplay: function(index){
+		var gif = questions[index].gif;
+
+		$("#picture").append("<img src='" + gif + "'alt='Twin Peaks GIF'>");
+	},
+
 // This function will determine if the answers selected are correct or incorrect.	
 	userAnswer: function() {
 
@@ -149,19 +165,19 @@ var game = {
 
 		    if (this.value == questions[game.qCounter].answer) {
 				game.correct++;
+				game.gifDisplay(game.qCounter);
 				game.qCounter++;
 				$("#correct").text(game.correct);
 				$("#userEnd").append("<h1> That's Right! <h1>");
 				game.questionsLeft--;
-				// game.newPicture();
 				game.stop();
 		    } else {
 		   		game.wrong++;
+				game.gifDisplay(game.qCounter);
 		   		game.qCounter++;
 				$("#wrong").text(game.wrong);
 				$("#userEnd").append("<h1> Wrong! <h1>");
 				game.questionsLeft--;
-				// game.newPicture();
 				game.stop();
 			}
 		});
@@ -169,8 +185,6 @@ var game = {
 
 	// This function will pull up a new question after the results from the previous question pop up.
 	newQuestion: function() {
-
-		console.log("New Question.")
 
 		game.start();
 
@@ -201,30 +215,6 @@ var game = {
 		$("#a3").remove();
 		$("#a4").remove();
 	}
-
-	// newPicture: function() {
-	// 	// Random Giffy function...
-	//     $.ajax({
-	// 	      url: "http://api.giphy.com/v1/gifs/random?",
-	// 	      method: 'GET',
-	// 	      data: {
-	// 	      	api_key: 'dc6zaTOxFJmzC',
-	// 	      	tag: $()
-	// 	      }
-	//     }).done(function(response) {
-	//     	var img = response['data']['image_url'];
-	//     	var imgArray = img.split('//');
-	//     	imgArray[0] = 'https:';
-	//     	img = imgArray.join('//');
-
-	//       var newGif = $("<img>");
-	//       newGif.attr("src", img);
-	//       newGif.attr("alt", "Twin Peaks GIF")
-
-	//       $("#picture").text(newGif);
-    
- //    	});
-	// }
 }
 
 // Here's the beginning of the trivia logic.
