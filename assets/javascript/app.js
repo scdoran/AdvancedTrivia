@@ -102,8 +102,8 @@ var game = {
 
 		if (game.questionsLeft > 0){
 			setTimeout(game.newQuestion, 2000);
-		} else if (game.questionsLeft === questions.length) {
-			game.end();
+		} else if (game.qCounter === questions.length) {
+			setTimeout(game.end, 2000);
 		}
 	},
 
@@ -114,6 +114,9 @@ var game = {
     clearInterval(interval);
     
 		$("#trivia").hide();
+		$("#timeUp").empty();
+		$("#userEnd").empty();
+		$("#picture").empty();
 		$("#results").show();
 		$("#end").show();
 
