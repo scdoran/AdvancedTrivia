@@ -8,7 +8,7 @@ var interval;
 var questions = [{
 		question: "Who is the creator of the Twin Peaks series?",
 		choices: ["Martin Scorsese", "David Lynch", "Ed Wood", "John Carpenter"],
-		answer: 2,
+		answer: "David Lynch",
 		gif: 'assets/images/david.gif',
 	}, { 
 		question: "What is Agent Cooper's first name?",
@@ -133,23 +133,23 @@ var game = {
 
 	display: function(index){
 
-		var question = $("<p id='question'>");
+		var question = $("<h2 id='question'>");
 		question.text(questions[index].question);
 		$(".question").append(question);
 
-		var choice1 = $("<p id='a1'>");
+		var choice1 = $("<h2 id='a1'>");
 		choice1.text(questions[index].choices[0]);
 		$("#choice1").append(choice1);
 
-		var choice2 = $("<p id='a2'>");
+		var choice2 = $("<h2 id='a2'>");
 		choice2.text(questions[index].choices[1]);
 		$("#choice2").append(choice2);
 
-		var choice3 = $("<p id='a3'>");
+		var choice3 = $("<h2 id='a3'>");
 		choice3.text(questions[index].choices[2]);
 		$("#choice3").append(choice3);
 
-		var choice4 = $("<p id='a4'>");
+		var choice4 = $("<h2 id='a4'>");
 		choice4.text(questions[index].choices[3]);
 		$("#choice4").append(choice4);
 
@@ -164,9 +164,13 @@ var game = {
 // This function will determine if the answers selected are correct or incorrect.	
 	userAnswer: function() {
 
-		$('input[type="radio"]:checked').each(function() {
+		$("h2").click(function() {
 
-		    if (this.value == questions[game.qCounter].answer) {
+			console.log("Click!");
+
+			alert("You clicked!");
+
+		    if (this.val() == questions[game.qCounter].answer) {
 				game.correct++;
 				game.gifDisplay(game.qCounter);
 				game.qCounter++;
@@ -243,7 +247,7 @@ var game = {
 	});
 	
 	 // When someone clicks an answer, the game will go to the next question.
-	$('input[type="radio"]').click(function answerQuestion() {
+	$('.answer').click(function answerQuestion() {
 
 		game.userAnswer();
 

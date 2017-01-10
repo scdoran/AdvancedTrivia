@@ -34,6 +34,12 @@ p, span, input {
     display: inline-block;
 }
 
+.answer:hover {
+    color: white;
+    text-shadow: 1px 1px 0 #2be70e, -1px -1px 0 #2be70e, 1px -1px 0 #2be70e, -1px 1px 0 #2be70e, 0px 1px 0 #2be70e, 1px 0px 0 #2be70e, 0px -1px 0 #2be70e, -1px 0px 0 #2be70e, 3px 3px 2px #000000;    text-shadow: 1px 1px 0 #2be70e, -1px -1px 0 #2be70e, 1px -1px 0 #2be70e, -1px 1px 0 #2be70e, 0px 1px 0 #2be70e, 1px 0px 0 #2be70e, 0px -1px 0 #2be70e, -1px 0px 0 #2be70e, 3px 3px 2px #000000;
+    cursor: pointer;
+}
+
 .well {
    background-color: rgba(245, 245, 245, 0.4);
 }
