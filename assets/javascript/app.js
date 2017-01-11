@@ -13,37 +13,37 @@ var questions = [{
 	}, { 
 		question: "What is Agent Cooper's first name?",
 		choices: ["Jim", "Dave", "Dale", "Benjamin"],
-		answer: 3,
+		answer: "Dale",
 		gif: 'assets/images/dale.gif',
 	}, { 
 		question: "Who is Laura Palmer's secret boyfriend?",
 		choices: ["Bobby Briggs", "Leo Johnson", "Ben Horne", "James Hurley"],
-		answer: 4,
+		answer: "James Hurley",
 		gif: 'assets/images/james.gif',
 	}, { 
 		question: "Who is Laura Palmer's best friend?",
 		choices: ["Shelly Johnson", "Audrey Horne", "Donna Hayward", "Josie Packard"],
-		answer: 3,
+		answer: "Donna Hayward",
 		gif: 'assets/images/donna.gif',
 	}, { 
 		question: "What is the name of the mysterious place Agent Cooper visits in his dreams?",
 		choices: ["Black Lodge", "White Lodge", "Red Lodge", "Hex Lodge"],
-		answer: 1,
+		answer: "Black Lodge",
 		gif: 'assets/images/blodge.gif',
 	}, { 
 		question: "What is the name of the hotel owned by Ben Horne?",
 		choices: ["Salish Lodge", "Great Northern Hotel", "Great Wolf Lodge", "Kiana Lodge"],
-		answer: 2,
+		answer: "Great Northern Hotel",
 		gif: 'assets/images/ben.gif',
 	}, { 
 		question: "Who found Laura Palmer's body?",
 		choices: ["Josie Packard", "Sheriff Truman", "Pete Packard", "Donna Hayward"],
-		answer: 3,
+		answer: "Pete Packard",
 		gif: 'assets/images/pete.gif',
 	}, { 
 		question: "What is the name Agent Cooper uses when he speaks into his tape recorder?",
 		choices: ["Jane", "Diane", "Lucy", "Sophia"],
-		answer: 2,
+		answer: "Diane",
 		gif: 'assets/images/dianecooper.gif',
 	},
 ]
@@ -162,15 +162,11 @@ var game = {
 	},
 
 // This function will determine if the answers selected are correct or incorrect.	
-	userAnswer: function() {
+	userAnswer: function(event) {
 
-		$("h2").click(function() {
+		console.log($(event.target).text());
 
-			console.log("Click!");
-
-			alert("You clicked!");
-
-		    if (this.val() == questions[game.qCounter].answer) {
+		    if ($(event.target).text() == questions[game.qCounter].answer) {
 				game.correct++;
 				game.gifDisplay(game.qCounter);
 				game.qCounter++;
@@ -187,7 +183,6 @@ var game = {
 				game.questionsLeft--;
 				game.stop();
 			}
-		});
 	},
 
 	// This function will pull up a new question after the results from the previous question pop up.
@@ -210,8 +205,6 @@ var game = {
 
 		// This will empty the 'Time's Up!' content that was revealed when the game ended due to time constraints..
 		$("#timeUp").empty();
-
-		$('input[type=radio]').attr("checked", false);
 
 	}, 
 
@@ -247,9 +240,9 @@ var game = {
 	});
 	
 	 // When someone clicks an answer, the game will go to the next question.
-	$('.answer').click(function answerQuestion() {
+	$('.answer').click(function answerQuestion(event) {
 
-		game.userAnswer();
+		game.userAnswer(event);
 
 	});
 
